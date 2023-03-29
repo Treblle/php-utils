@@ -32,7 +32,7 @@
   },
   "require": {
     "php": "^8.1",
-    "juststeveking/sdk-tools": "^0.0.2"
+    "juststeveking/sdk-tools": "^0.0.4"
   },
   "require-dev": {
     "laravel/pint": "^1.7",
