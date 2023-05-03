@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Treblle\Utils\DataObjects;
 
-final class Error
+final readonly class Error
 {
     /**
      * @param null|string $source The reason an error is thrown, onException, onError, onShutdown.
@@ -14,11 +14,11 @@ final class Error
      * @param null|int $line The exact line of code where the error happened.
      */
     public function __construct(
-        public readonly null|string $source,
-        public readonly null|string $type,
-        public readonly null|string $message,
-        public readonly null|string $file,
-        public readonly null|int $line,
+        public null|string $source,
+        public null|string $type,
+        public null|string $message,
+        public null|string $file,
+        public null|int $line,
     ) {
     }
 

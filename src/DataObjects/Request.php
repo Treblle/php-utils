@@ -6,7 +6,7 @@ namespace Treblle\Utils\DataObjects;
 
 use JustSteveKing\Tools\Http\Enums\Method;
 
-final class Request
+final readonly class Request
 {
     /**
      * @param string $timestamp The timestamp of the request in the format: YYYY-MM-DD hh:mm:ss.
@@ -19,14 +19,14 @@ final class Request
      * @param array<int|string,mixed> $raw The raw body from the request.
      */
     public function __construct(
-        public readonly string $timestamp,
-        public readonly string $ip,
-        public readonly string $url,
-        public readonly string $user_agent,
-        public readonly null|Method $method,
-        public readonly array $headers,
-        public readonly array $body,
-        public readonly array $raw,
+        public string $timestamp,
+        public string $ip,
+        public string $url,
+        public string $user_agent,
+        public null|Method $method,
+        public array $headers,
+        public array $body,
+        public array $raw,
     ) {
     }
 

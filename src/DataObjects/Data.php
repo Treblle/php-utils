@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Treblle\Utils\DataObjects;
 
-final class Data
+final readonly class Data
 {
     /**
      * @param Server $server The Server Object.
@@ -14,11 +14,11 @@ final class Data
      * @param list<Error> $errors The list of Errors.
      */
     public function __construct(
-        public readonly Server $server,
-        public readonly Language $language,
-        public readonly Request $request,
-        public readonly Response $response,
-        public readonly array $errors,
+        public Server $server,
+        public Language $language,
+        public Request $request,
+        public Response $response,
+        public array $errors,
     ) {
     }
 

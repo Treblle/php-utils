@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Treblle\Utils\DataObjects;
 
-final class Server
+final readonly class Server
 {
     /**
      * @param null|string $ip The IP address of the server.
@@ -16,13 +16,13 @@ final class Server
      * @param null|string $encoding
      */
     public function __construct(
-        public readonly null|string $ip,
-        public readonly null|string $timezone,
-        public readonly null|string $software,
-        public readonly null|string $signature,
-        public readonly null|string $protocol,
-        public readonly null|OS $os,
-        public readonly null|string $encoding,
+        public null|string $ip,
+        public null|string $timezone,
+        public null|string $software,
+        public null|string $signature,
+        public null|string $protocol,
+        public null|OS $os,
+        public null|string $encoding,
     ) {
     }
 

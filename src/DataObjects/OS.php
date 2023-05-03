@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Treblle\Utils\DataObjects;
 
-final class OS
+final readonly class OS
 {
     /**
      * @param null|string $name The name of the server OS: Linux, Windows, etc.
@@ -12,9 +12,9 @@ final class OS
      * @param null|string $architecture The server architecture.
      */
     public function __construct(
-        public readonly null|string $name,
-        public readonly null|string $release,
-        public readonly null|string $architecture,
+        public null|string $name,
+        public null|string $release,
+        public null|string $architecture,
     ) {
     }
 
