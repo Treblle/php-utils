@@ -51,3 +51,23 @@ it('can map the object to the correct array format', function (string $string): 
         ],
     ]);
 })->with('strings');
+
+it('will keep boolean types', function (): void {
+    $response = new Response(
+        headers: [
+            'Content-Type' => 'application/json'
+        ],
+        code: 123,
+        size: 123,
+        load_time: 12.3,
+        body: [
+            'boolean' => true,
+        ]
+    );
+
+    expect(
+        $response->body,
+    )->toBeArray()->and(
+        $response->body['boolean'],
+    )->toBeBool()->toEqual(true);
+});

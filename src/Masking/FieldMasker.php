@@ -30,6 +30,10 @@ final class FieldMasker
                 );
             }
 
+            if (is_bool($value) || is_int($value) || is_float($value) || is_null($value)) {
+                $collector[$key] = $value;
+            }
+
             // we should know it is a string.
             if (is_string($value)) {
                 // check if this is an auth header or api key header etc
