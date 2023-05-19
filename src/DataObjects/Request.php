@@ -6,7 +6,7 @@ namespace Treblle\Utils\DataObjects;
 
 use JustSteveKing\Tools\Http\Enums\Method;
 
-final readonly class Request
+final class Request
 {
     /**
      * @param string $timestamp The timestamp of the request in the format: YYYY-MM-DD hh:mm:ss.

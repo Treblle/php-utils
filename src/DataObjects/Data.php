@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Treblle\Utils\DataObjects;
 
-final readonly class Data
+final class Data
 {
     /**
      * @param Server $server The Server Object.

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Treblle\Utils\DataObjects;
 
-final readonly class Server
+final class Server
 {
     /**
      * @param null|string $ip The IP address of the server.

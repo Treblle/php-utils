@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Treblle\Utils\DataObjects;
 
-final readonly class Response
+final class Response
 {
     /**
      * @param array<string,string> $headers The Response headers in key:value format.

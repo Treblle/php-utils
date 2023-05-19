@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Treblle\Utils\DataObjects;
 
-final readonly class Language
+final class Language
 {
     /**
      * @param null|string $name The language name: PHP, Python, .NET, Ruby, JS.

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Treblle\Utils\DataObjects;
 
-final readonly class OS
+final class OS
 {
     /**
      * @param null|string $name The name of the server OS: Linux, Windows, etc.

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Treblle\Utils\DataObjects;
 
-final readonly class Error
+final class Error
 {
     /**
      * @param null|string $source The reason an error is thrown, onException, onError, onShutdown.
