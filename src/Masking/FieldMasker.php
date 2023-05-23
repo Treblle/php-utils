@@ -77,10 +77,10 @@ final class FieldMasker
 
     /**
      * Check if the field is a Header.
-     * @param string $name
+     * @param int|bool|float|string|null $name
      * @return bool
      */
-    private function isHeader(string $name): bool
+    private function isHeader(int|bool|float|null|string $name): bool
     {
         return in_array(
             needle: $name,
