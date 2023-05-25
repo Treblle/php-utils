@@ -11,7 +11,7 @@ final class FieldMasker
      * @param array<int,string|int|bool|array> $fields
      */
     public function __construct(
-        public array $fields,
+        public array $fields = [],
     ) {
     }
 
