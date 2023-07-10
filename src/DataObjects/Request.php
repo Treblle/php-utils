@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Treblle\Utils\DataObjects;
 
-use JustSteveKing\Tools\Http\Enums\Method;
+use Treblle\Utils\Http\Method;
 
 final class Request
 {

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use JustSteveKing\Tools\Http\Enums\Method;
 use Treblle\Utils\DataObjects\Data;
 use Treblle\Utils\DataObjects\Error;
 use Treblle\Utils\DataObjects\Language;
@@ -10,6 +9,7 @@ use Treblle\Utils\DataObjects\OS;
 use Treblle\Utils\DataObjects\Request;
 use Treblle\Utils\DataObjects\Response;
 use Treblle\Utils\DataObjects\Server;
+use Treblle\Utils\Http\Method;
 use Treblle\Utils\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);

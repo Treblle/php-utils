@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-use JustSteveKing\Tools\Http\Enums\Method;
+
+use Treblle\Utils\Http\Method;
 
 it('can cast an object to an array', function (string $string): void {
     $data = createData(

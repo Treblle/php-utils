@@ -10,3 +10,5 @@ parameters:
     excludePaths:
 
     checkMissingIterableValueType: false
+
+    treatPhpDocTypesAsCertain: false
