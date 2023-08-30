@@ -50,9 +50,15 @@ final class FieldMasker
                             string: $value,
                         );
 
-                        $parts[1] = $this->star(
-                            string: $parts[1],
-                        );
+                        if (count($parts) >= 2) {
+                            for ($i = 1; $i < count($parts); $i++) {
+                                $parts[$i] = $this->star(
+                                    string: $parts[$i]
+                                );
+                            }
+                        } else {
+                            $parts[0] = $this->star($parts[0]);
+                        }
 
                         $value = implode(' ', $parts);
                     } else {
