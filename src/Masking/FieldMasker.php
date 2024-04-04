@@ -6,136 +6,79 @@ namespace Treblle\Utils\Masking;
 
 final class FieldMasker
 {
-    /**
-     * Create a new instance of the FieldMasker.
-     * @param array<int,string|int|bool|array> $fields
-     */
     public function __construct(
         public array $fields = [],
     ) {
     }
 
-    /**
-     * Mask the inputted data.
-     * @param array<string,string|array> $data
-     * @return array
-     */
     public function mask(array $data): array
     {
         $collector = [];
         foreach ($data as $key => $value) {
-            if (is_array($value)) {
-                $collector[$key] = $this->mask(
+            $collector[$key] = match (true) {
+                is_array($value) => $this->mask(
                     data: $value,
-                );
-            }
-
-            if (is_bool($value) || is_int($value) || is_float($value) || is_null($value)) {
-                $collector[$key] = $value;
-            }
-
-            // we should know it is a string.
-            if (is_string($value)) {
-                // check if this is an auth header or api key header etc
-                // is the key a header we want to mask?
-                if ($this->isHeader(
-                    name: $key,
-                )) {
-                    // grab the sensitive part of the value and mask.
-                    if ($this->isAuth(
-                        value: $value,
-                    )) {
-                        $parts = explode(
-                            separator: ' ',
-                            string: $value,
-                        );
-
-                        if (count($parts) >= 2) {
-                            for ($i = 1; $i < count($parts); $i++) {
-                                $parts[$i] = $this->star(
-                                    string: $parts[$i]
-                                );
-                            }
-                        } else {
-                            $parts[0] = $this->star($parts[0]);
-                        }
-
-                        $value = implode(' ', $parts);
-                    } else {
-                        $value = $this->star(
-                            string: $value,
-                        );
-                    }
-                }
-
-                if (in_array($key, $this->fields, true)) {
-                    $collector[$key] = $this->star(
-                        string: $value,
-                    );
-                } else {
-                    $collector[$key] = $value;
-                }
-            }
+                ),
+                is_string($value) => $this->handleString(
+                    key: $key,
+                    value: $value,
+                ),
+                default => $value,
+            };
         }
 
         return $collector;
     }
 
-    /**
-     * Check if the field is a Header.
-     * @param int|bool|float|string|null $name
-     * @return bool
-     */
-    private function isHeader(int|bool|float|null|string $name): bool
+    private function handleString(string $key, string $value): string
     {
-        return in_array(
-            needle: $name,
-            haystack: [
-                'auth',
-                'Auth',
-                'Authorization',
-                'authorization',
-                'X-API-KEY',
-                'x-api-key',
-            ],
-            strict: true,
-        );
+        static $lowerFields = null;
+        if ($lowerFields === null) {
+            $lowerFields = array_map('strtolower', $this->fields);
+        }
+
+        $lowerKey = strtolower($key);
+
+        if (in_array($lowerKey, $lowerFields, true)) {
+            return $this->star($value);
+        }
+
+        if ($this->isSensitiveHeader($lowerKey)) {
+            return $this->maskAuthorization($value);
+        }
+
+        if ($this->isBase64($value)) {
+            return 'base64 encoded images are too big to process';
+        }
+
+        return $value;
     }
 
-    /**
-     * Check is the value is part of an Auth header.
-     * @param string $value
-     * @return bool
-     */
-    private function isAuth(string $value): bool
+    private function maskAuthorization(string $value): string
     {
-        return in_array(
-            needle: explode(
-                separator: ' ',
-                string: $value,
-            )[0],
-            haystack: [
-                'Bearer',
-                'bearer',
-                'Basic',
-                'basic',
-            ],
-            strict: true,
-        );
+        $parts = explode(' ', $value, 2);
+        if (isset($parts[1])) {
+            $authTypeLower = strtolower($parts[0]);
+            if (in_array($authTypeLower, ['bearer', 'basic', 'digest'])) {
+                return $parts[0].' '.$this->star($parts[1]);
+            }
+        }
+
+        return $this->star($value);
     }
 
-    /**
-     * Replace a string input with a star.
-     * @param string $string
-     * @return string
-     */
+    private function isSensitiveHeader(string $key): bool
+    {
+        return in_array($key, ['authorization', 'x-api-key'], true);
+    }
+
     public function star(string $string): string
     {
-        return str_repeat(
-            string: '*',
-            times: strlen(
-                string: $string,
-            ),
-        );
+        return str_repeat('*', strlen($string));
+    }
+
+    private function isBase64(string $string): bool
+    {
+        return str_starts_with($string, 'data:image/') && str_contains($string, ';base64,');
     }
 }
