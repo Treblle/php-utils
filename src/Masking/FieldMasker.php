@@ -30,8 +30,12 @@ final class FieldMasker
         return $collector;
     }
 
-    private function handleString(string $key, string $value): string
+    private function handleString(string|int|float|bool $key, string $value): string
     {
+        if (! is_string($key)) {
+            $key = (string) $key;
+        }
+
         static $lowerFields = null;
         if ($lowerFields === null) {
             $lowerFields = array_map('strtolower', $this->fields);
