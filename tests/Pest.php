@@ -41,6 +41,7 @@ function createData(string $string): Data
             timestamp: $string,
             ip: $string,
             url: $string,
+            route_path: $string,
             user_agent: $string,
             method: Method::GET,
             headers: [

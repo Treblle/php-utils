@@ -10,6 +10,7 @@ it('can cast an object to an array', function (string $string): void {
         timestamp: $string,
         ip: $string,
         url: $string,
+        route_path: $string,
         user_agent: $string,
         method: Method::DELETE,
         headers: [
@@ -35,6 +36,7 @@ it('can map the object to the correct array format', function (string $string): 
         timestamp: $string,
         ip: $string,
         url: $string,
+        route_path: $string,
         user_agent: $string,
         method: Method::GET,
         headers: [
@@ -44,7 +46,7 @@ it('can map the object to the correct array format', function (string $string): 
             $string => $string,
         ],
         raw: [
-            $string => $string
+            $string => $string,
         ]
     );
 
@@ -54,6 +56,7 @@ it('can map the object to the correct array format', function (string $string): 
         'timestamp' => $string,
         'ip' => $string,
         'url' => $string,
+        'route_path' => $string,
         'user_agent' => $string,
         'method' => Method::GET->value,
         'headers' => [
@@ -63,7 +66,7 @@ it('can map the object to the correct array format', function (string $string): 
             $string => $string,
         ],
         'raw' => [
-            $string => $string
-        ]
+            $string => $string,
+        ],
     ]);
 })->with('strings');

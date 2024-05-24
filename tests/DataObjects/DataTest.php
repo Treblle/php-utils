@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 use Treblle\Utils\Http\Method;
 
 it('can cast an object to an array', function (string $string): void {
@@ -42,12 +41,13 @@ it('can map the object to the correct array format', function (string $string): 
             'name' => $string,
             'version' => $string,
             'expose_php' => $string,
-            'display_errors' => $string
+            'display_errors' => $string,
         ],
         'request' => [
             'timestamp' => $string,
             'ip' => $string,
             'url' => $string,
+            'route_path' => $string,
             'user_agent' => $string,
             'method' => Method::GET->value,
             'headers' => [
@@ -69,7 +69,7 @@ it('can map the object to the correct array format', function (string $string): 
             'load_time' => 12.3,
             'body' => [
                 $string => $string,
-            ]
+            ],
         ],
         'errors' => [
             [
@@ -78,7 +78,7 @@ it('can map the object to the correct array format', function (string $string): 
                 'message' => $string,
                 'file' => $string,
                 'line' => 123,
-            ]
-        ]
+            ],
+        ],
     ]);
 })->with('strings');
