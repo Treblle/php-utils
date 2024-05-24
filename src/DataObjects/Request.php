@@ -12,7 +12,7 @@ final class Request
      * @param  string  $timestamp The timestamp of the request in the format: YYYY-MM-DD hh:mm:ss.
      * @param  string  $ip The real IP address of the request.
      * @param  string  $url The full URL of the request including query data if any.
-     * @param  null|string  $route_path The path of the route from the framework.
+     * @param  null|string|object  $route_path The path of the route from the framework.
      * @param  string  $user_agent The User Agent of the request.
      * @param  null|Method  $method The HTTP method of the request, uppercase if possible.
      * @param  array<int|string,string>  $headers The request headers for the request in key:value format.
@@ -23,7 +23,7 @@ final class Request
         public string $timestamp,
         public string $ip,
         public string $url,
-        public null|string $route_path,
+        public null|string|object $route_path,
         public string $user_agent,
         public null|Method $method,
         public array $headers,
@@ -37,7 +37,7 @@ final class Request
      *     timestamp: string,
      *     ip: string,
      *     url: string,
-     *     route_path: null|string,
+     *     route_path: null|string|object,
      *     user_agent: string,
      *     method: string|null,
      *     headers: array,
