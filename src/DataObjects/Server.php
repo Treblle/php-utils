@@ -14,6 +14,7 @@ final class Server
      * @param null|string $protocol The HTTP protocol used
      * @param null|OS $os The OS object
      * @param null|string $encoding
+     * @param null|string $hostname
      */
     public function __construct(
         public null|string $ip,
@@ -23,6 +24,7 @@ final class Server
         public null|string $protocol,
         public null|OS $os,
         public null|string $encoding,
+        public null|string $hostname,
     ) {
     }
 
@@ -38,7 +40,8 @@ final class Server
      *         release: null|string,
      *         architecture: null|string
      *     }|null,
-     *     encoding: null|string
+     *     encoding: null|string,
+     *     hostname: null|string
      * }
      */
     public function __toArray(): array
@@ -51,6 +54,7 @@ final class Server
             'protocol' => $this->protocol,
             'os' => $this->os?->__toArray(),
             'encoding' => $this->encoding,
+            'hostname' => $this->hostname,
         ];
     }
 }
