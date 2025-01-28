@@ -22,7 +22,7 @@ it('can map the object to the correct array format', function (string $string): 
     $os = new OS(
         name: $string,
         release: $string,
-        architecture: $string
+        architecture: $string,
     );
 
     expect(

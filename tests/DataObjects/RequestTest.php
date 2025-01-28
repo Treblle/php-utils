@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Treblle\Utils\DataObjects\Request;
 use Treblle\Utils\Http\Method;
+use Treblle\Utils\DataObjects\Request;
 
 it('can cast an object to an array', function (string $string): void {
     $request = new Request(
@@ -27,7 +27,7 @@ it('can cast an object to an array', function (string $string): void {
     expect(
         (array) $request,
     )->toBeArray()->toHaveKeys(
-        keys: ['timestamp', 'ip', 'url', 'user_agent', 'method', 'headers', 'body', 'raw'],
+        keys: ['timestamp', 'ip', 'url', 'route_path', 'user_agent', 'method', 'headers', 'body', 'raw'],
     );
 })->with('strings');
 
@@ -47,7 +47,7 @@ it('can map the object to the correct array format', function (string $string): 
         ],
         raw: [
             $string => $string,
-        ]
+        ],
     );
 
     expect(

@@ -7,7 +7,7 @@ use Treblle\Utils\Support\ErrorType;
 it('can match the error type in PHP to a string value', function (int $error, string $name): void {
     expect(
         ErrorType::get(
-            type: $error
+            type: $error,
         ),
     )->toEqual($name);
 })->with('errors');

@@ -14,10 +14,10 @@ final class Response
      * @param string|array<int|string,mixed> $body The complete JSON respinse returned by the server.
      */
     public function __construct(
-        public array $headers,
-        public null|int $code,
-        public null|int $size,
-        public null|float $load_time,
+        public array        $headers,
+        public null|int     $code,
+        public null|int     $size,
+        public null|float   $load_time,
         public string|array $body,
     ) {
     }

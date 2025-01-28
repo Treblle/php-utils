@@ -26,6 +26,42 @@ it('can mask a simple payload', function (): void {
     ]);
 });
 
+it('can mask a simple payload with non string key', function (): void {
+    $masker = new FieldMasker(
+        fields: ['password'],
+    );
+
+    expect(
+        $masker->mask(
+            data: [
+                'password' => 'password',
+                1 => 'bar',
+            ],
+        ),
+    )->toBeArray()->toEqual([
+        'password' => '********',
+        1 => 'bar',
+    ]);
+});
+
+it('can mask a simple payload with non string value', function (): void {
+    $masker = new FieldMasker(
+        fields: ['password'],
+    );
+
+    expect(
+        $masker->mask(
+            data: [
+                'password' => 'password',
+                'foo' => 1,
+            ],
+        ),
+    )->toBeArray()->toEqual([
+        'password' => '********',
+        'foo' => 1,
+    ]);
+});
+
 it('can mask an recursive array', function (): void {
     $masker = new FieldMasker(
         fields: ['password', 'api_key', 'cc'],
@@ -56,7 +92,7 @@ it('can mask an recursive array', function (): void {
     ]);
 });
 
-it('can handle a single Authorization entry', function () {
+it('can handle an Authorization entry without prefix', function (): void {
     $masker = new FieldMasker(
         fields: ['password', 'api_key', 'cc'],
     );
@@ -84,7 +120,7 @@ it('can handle a single Authorization entry', function () {
     ]);
 });
 
-it('can handle a two Authorization entries', function () {
+it('can handle an Authorization entry with prefix Bearer', function (): void {
     $masker = new FieldMasker(
         fields: ['password', 'api_key', 'cc'],
     );
@@ -112,8 +148,7 @@ it('can handle a two Authorization entries', function () {
     ]);
 });
 
-
-it('can handle a multiple Authorization entries', function () {
+it('can handle Authorization entry with spaces', function (): void {
     $masker = new FieldMasker(
         fields: ['password', 'api_key', 'cc'],
     );
@@ -141,7 +176,7 @@ it('can handle a multiple Authorization entries', function () {
     ]);
 });
 
-it('can handle a malformed Authorization entry', function () {
+it('can handle a malformed Authorization entry', function (): void {
     $masker = new FieldMasker(
         fields: ['password', 'api_key', 'cc'],
     );
@@ -169,7 +204,7 @@ it('can handle a malformed Authorization entry', function () {
     ]);
 });
 
-it('masks base64 encoded image strings', function () {
+it('masks base64 encoded image strings', function (): void {
     $masker = new FieldMasker();
 
     $base64Image = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==';
@@ -180,11 +215,12 @@ it('masks base64 encoded image strings', function () {
     $maskedData = $masker->mask($data);
 
     // Assert that the base64 encoded image string is replaced with a mask or default value
-    expect($maskedData['image'])->not()->toEqual($base64Image);
-    expect($maskedData['image'])->toEqual('base64 encoded images are too big to process'); // Assuming 'DEFAULT_VALUE' is what you use for masking
+    expect($maskedData['image'])
+        ->not()->toEqual($base64Image)
+        ->and($maskedData['image'])->toEqual('base64 encoded images are too big to process'); // Assuming 'DEFAULT_VALUE' is what you use for masking
 });
 
-it('does not mask non-base64 encoded strings', function () {
+it('does not mask non-base64 encoded strings', function (): void {
     $masker = new FieldMasker();
 
     $nonBase64String = 'This is a test string, not base64 encoded.';
@@ -198,7 +234,7 @@ it('does not mask non-base64 encoded strings', function () {
     expect($maskedData['description'])->toEqual($nonBase64String);
 });
 
-it('masks base64 encoded image strings within nested arrays', function () {
+it('masks base64 encoded image strings within nested arrays', function (): void {
     $masker = new FieldMasker();
 
     $base64Image = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJ...';

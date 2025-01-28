@@ -2,18 +2,17 @@
 
 declare(strict_types=1);
 
+use Treblle\Utils\Http\Method;
+use Treblle\Utils\DataObjects\OS;
+use Treblle\Utils\Tests\TestCase;
 use Treblle\Utils\DataObjects\Data;
 use Treblle\Utils\DataObjects\Error;
-use Treblle\Utils\DataObjects\Language;
-use Treblle\Utils\DataObjects\OS;
-use Treblle\Utils\DataObjects\Request;
-use Treblle\Utils\DataObjects\Response;
 use Treblle\Utils\DataObjects\Server;
-use Treblle\Utils\Http\Method;
-use Treblle\Utils\Tests\TestCase;
+use Treblle\Utils\DataObjects\Request;
+use Treblle\Utils\DataObjects\Language;
+use Treblle\Utils\DataObjects\Response;
 
 uses(TestCase::class)->in(__DIR__);
-
 
 function createData(string $string): Data
 {
@@ -29,13 +28,12 @@ function createData(string $string): Data
                 release: $string,
                 architecture: $string,
             ),
-            encoding: $string
+            encoding: $string,
+            hostname: $string,
         ),
         language: new Language(
             name: $string,
             version: $string,
-            expose_php: $string,
-            display_errors: $string,
         ),
         request: new Request(
             timestamp: $string,

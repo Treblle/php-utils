@@ -39,7 +39,7 @@ final class Data
             'request' => $this->request->__toArray(),
             'response' => $this->response->__toArray(),
             'errors' => array_map(
-                callback: static fn ($error): array => $error->__toArray(),
+                callback: static fn (Error $error): array => $error->__toArray(),
                 array: $this->errors,
             ),
         ];

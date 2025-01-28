@@ -30,6 +30,11 @@ final class FieldMasker
         return $collector;
     }
 
+    public function star(string $string): string
+    {
+        return str_repeat('*', mb_strlen($string));
+    }
+
     private function handleString(string|int|float|bool $key, string $value): string
     {
         if (! is_string($key)) {
@@ -37,11 +42,11 @@ final class FieldMasker
         }
 
         static $lowerFields = null;
-        if ($lowerFields === null) {
+        if (null === $lowerFields) {
             $lowerFields = array_map('strtolower', $this->fields);
         }
 
-        $lowerKey = strtolower($key);
+        $lowerKey = mb_strtolower($key);
 
         if (in_array($lowerKey, $lowerFields, true)) {
             return $this->star($value);
@@ -62,9 +67,9 @@ final class FieldMasker
     {
         $parts = explode(' ', $value, 2);
         if (isset($parts[1])) {
-            $authTypeLower = strtolower($parts[0]);
+            $authTypeLower = mb_strtolower($parts[0]);
             if (in_array($authTypeLower, ['bearer', 'basic', 'digest'])) {
-                return $parts[0].' '.$this->star($parts[1]);
+                return $parts[0] . ' ' . $this->star($parts[1]);
             }
         }
 
@@ -74,11 +79,6 @@ final class FieldMasker
     private function isSensitiveHeader(string $key): bool
     {
         return in_array($key, ['authorization', 'x-api-key'], true);
-    }
-
-    public function star(string $string): string
-    {
-        return str_repeat('*', strlen($string));
     }
 
     private function isBase64(string $string): bool
