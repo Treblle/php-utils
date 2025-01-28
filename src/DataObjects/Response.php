@@ -10,14 +10,14 @@ final class Response
      * @param array<string,string> $headers The Response headers in key:value format.
      * @param int|null $code The HTTP Status Code.
      * @param int|null $size The Response size in bytes.
-     * @param float|null $load_time The load time of the Response in microseconds.
+     * @param float|null $loadTime The load time of the Response in microseconds.
      * @param string|array<int|string,mixed> $body The complete JSON respinse returned by the server.
      */
     public function __construct(
-        public array $headers,
-        public null|int $code,
-        public null|int $size,
-        public null|float $load_time,
+        public array      $headers,
+        public null|int   $code,
+        public null|int   $size,
+        public null|float $loadTime,
         public string|array $body,
     ) {
     }
@@ -37,7 +37,7 @@ final class Response
             'headers' => $this->headers,
             'code' => $this->code,
             'size' => $this->size,
-            'load_time' => $this->load_time,
+            'load_time' => $this->loadTime,
             'body' => $this->body,
         ];
     }

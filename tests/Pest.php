@@ -29,19 +29,18 @@ function createData(string $string): Data
                 architecture: $string,
             ),
             encoding: $string,
+            hostname: $string,
         ),
         language: new Language(
             name: $string,
             version: $string,
-            expose_php: $string,
-            display_errors: $string,
         ),
         request: new Request(
             timestamp: $string,
             ip: $string,
             url: $string,
-            route_path: $string,
-            user_agent: $string,
+            routePath: $string,
+            userAgent: $string,
             method: Method::GET,
             headers: [
                 $string => $string,
@@ -59,7 +58,7 @@ function createData(string $string): Data
             ],
             code: 123,
             size: 123,
-            load_time: 12.3,
+            loadTime: 12.3,
             body: [
                 $string => $string,
             ],

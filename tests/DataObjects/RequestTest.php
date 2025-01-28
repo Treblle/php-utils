@@ -10,8 +10,8 @@ it('can cast an object to an array', function (string $string): void {
         timestamp: $string,
         ip: $string,
         url: $string,
-        route_path: $string,
-        user_agent: $string,
+        routePath: $string,
+        userAgent: $string,
         method: Method::DELETE,
         headers: [
             $string => $string,
@@ -36,8 +36,8 @@ it('can map the object to the correct array format', function (string $string): 
         timestamp: $string,
         ip: $string,
         url: $string,
-        route_path: $string,
-        user_agent: $string,
+        routePath: $string,
+        userAgent: $string,
         method: Method::GET,
         headers: [
             $string => $string,

@@ -36,12 +36,11 @@ it('can map the object to the correct array format', function (string $string): 
                 'architecture' => $string,
             ],
             'encoding' => $string,
+            'hostname' => $string,
         ],
         'language' => [
             'name' => $string,
             'version' => $string,
-            'expose_php' => $string,
-            'display_errors' => $string,
         ],
         'request' => [
             'timestamp' => $string,

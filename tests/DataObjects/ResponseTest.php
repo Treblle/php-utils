@@ -11,7 +11,7 @@ it('can cast an object to an array', function (string $string): void {
         ],
         code: 123,
         size: 123,
-        load_time: 12.3,
+        loadTime: 12.3,
         body: [
             $string => $string,
         ],
@@ -31,7 +31,7 @@ it('can map the object to the correct array format', function (string $string): 
         ],
         code: 123,
         size: 123,
-        load_time: 12.3,
+        loadTime: 12.3,
         body: [
             $string => $string,
         ],
@@ -59,7 +59,7 @@ it('will keep boolean types', function (): void {
         ],
         code: 123,
         size: 123,
-        load_time: 12.3,
+        loadTime: 12.3,
         body: [
             'boolean' => true,
         ],
