@@ -10,8 +10,8 @@ it('can cast an object to an array', function (string $string): void {
         timestamp: $string,
         ip: $string,
         url: $string,
-        routePath: $string,
-        userAgent: $string,
+        route_path: $string,
+        user_agent: $string,
         method: Method::DELETE,
         headers: [
             $string => $string,
@@ -27,7 +27,7 @@ it('can cast an object to an array', function (string $string): void {
     expect(
         (array) $request,
     )->toBeArray()->toHaveKeys(
-        keys: ['timestamp', 'ip', 'url', 'user_agent', 'method', 'headers', 'body', 'raw'],
+        keys: ['timestamp', 'ip', 'url', 'route_path', 'user_agent', 'method', 'headers', 'body', 'raw'],
     );
 })->with('strings');
 
@@ -36,8 +36,8 @@ it('can map the object to the correct array format', function (string $string): 
         timestamp: $string,
         ip: $string,
         url: $string,
-        routePath: $string,
-        userAgent: $string,
+        route_path: $string,
+        user_agent: $string,
         method: Method::GET,
         headers: [
             $string => $string,

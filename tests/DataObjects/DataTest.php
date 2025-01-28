@@ -5,9 +5,7 @@ declare(strict_types=1);
 use Treblle\Utils\Http\Method;
 
 it('can cast an object to an array', function (string $string): void {
-    $data = createData(
-        string: $string,
-    );
+    $data = createData($string);
 
     expect(
         (array) $data,
@@ -17,9 +15,7 @@ it('can cast an object to an array', function (string $string): void {
 })->with('strings');
 
 it('can map the object to the correct array format', function (string $string): void {
-    $data = createData(
-        string: $string,
-    );
+    $data = createData($string);
 
     expect(
         $data->__toArray(),

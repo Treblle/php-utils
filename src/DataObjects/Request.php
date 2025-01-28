@@ -12,8 +12,8 @@ final class Request
      * @param string $timestamp The timestamp of the request in the format: YYYY-MM-DD hh:mm:ss.
      * @param string $ip The real IP address of the request.
      * @param string $url The full URL of the request including query data if any.
-     * @param null|string $routePath The path of the route from the framework.
-     * @param string $userAgent The User Agent of the request.
+     * @param null|string $route_path The path of the route from the framework.
+     * @param string $user_agent The User Agent of the request.
      * @param Method $method The HTTP method of the request, uppercase if possible.
      * @param array<int|string,string> $headers The request headers for the request in key:value format.
      * @param array<int|string,mixed> $body The complete request data sent with this request.
@@ -23,8 +23,8 @@ final class Request
         public string      $timestamp,
         public string      $ip,
         public string      $url,
-        public null|string $routePath,
-        public string      $userAgent,
+        public null|string $route_path,
+        public string      $user_agent,
         public Method      $method,
         public array       $headers,
         public array       $body,
@@ -51,8 +51,8 @@ final class Request
             'timestamp' => $this->timestamp,
             'ip' => $this->ip,
             'url' => $this->url,
-            'route_path' => $this->routePath,
-            'user_agent' => $this->userAgent,
+            'route_path' => $this->route_path,
+            'user_agent' => $this->user_agent,
             'method' => $this->method->value,
             'headers' => $this->headers,
             'body' => $this->body,
