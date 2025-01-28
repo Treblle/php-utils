@@ -23,7 +23,7 @@ it('can cast an object to an array', function (string $string): void {
     expect(
         (array) $server,
     )->toBeArray()->toHaveKeys(
-        keys: ['ip', 'timezone', 'software', 'signature', 'protocol', 'os', 'encoding']
+        keys: ['ip', 'timezone', 'software', 'signature', 'protocol', 'os', 'encoding'],
     );
 })->with('strings');
 
