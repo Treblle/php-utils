@@ -44,6 +44,24 @@ it('can mask a simple payload with non string key', function (): void {
     ]);
 });
 
+it('can mask a simple payload with non string value', function (): void {
+    $masker = new FieldMasker(
+        fields: ['password'],
+    );
+
+    expect(
+        $masker->mask(
+            data: [
+                'password' => 'password',
+                'foo' => 1,
+            ],
+        ),
+    )->toBeArray()->toEqual([
+        'password' => '********',
+        'foo' => 1,
+    ]);
+});
+
 it('can mask an recursive array', function (): void {
     $masker = new FieldMasker(
         fields: ['password', 'api_key', 'cc'],
