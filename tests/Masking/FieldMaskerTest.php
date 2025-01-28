@@ -26,6 +26,24 @@ it('can mask a simple payload', function (): void {
     ]);
 });
 
+it('can mask a simple payload with non string key', function (): void {
+    $masker = new FieldMasker(
+        fields: ['password'],
+    );
+
+    expect(
+        $masker->mask(
+            data: [
+                'password' => 'password',
+                1 => 'bar',
+            ],
+        ),
+    )->toBeArray()->toEqual([
+        'password' => '********',
+        1 => 'bar',
+    ]);
+});
+
 it('can mask an recursive array', function (): void {
     $masker = new FieldMasker(
         fields: ['password', 'api_key', 'cc'],
@@ -56,7 +74,7 @@ it('can mask an recursive array', function (): void {
     ]);
 });
 
-it('can handle a single Authorization entry', function (): void {
+it('can handle an Authorization entry without prefix', function (): void {
     $masker = new FieldMasker(
         fields: ['password', 'api_key', 'cc'],
     );
@@ -84,7 +102,7 @@ it('can handle a single Authorization entry', function (): void {
     ]);
 });
 
-it('can handle a two Authorization entries', function (): void {
+it('can handle an Authorization entry with prefix Bearer', function (): void {
     $masker = new FieldMasker(
         fields: ['password', 'api_key', 'cc'],
     );
@@ -112,7 +130,7 @@ it('can handle a two Authorization entries', function (): void {
     ]);
 });
 
-it('can handle a multiple Authorization entries', function (): void {
+it('can handle Authorization entry with spaces', function (): void {
     $masker = new FieldMasker(
         fields: ['password', 'api_key', 'cc'],
     );
@@ -179,8 +197,9 @@ it('masks base64 encoded image strings', function (): void {
     $maskedData = $masker->mask($data);
 
     // Assert that the base64 encoded image string is replaced with a mask or default value
-    expect($maskedData['image'])->not()->toEqual($base64Image);
-    expect($maskedData['image'])->toEqual('base64 encoded images are too big to process'); // Assuming 'DEFAULT_VALUE' is what you use for masking
+    expect($maskedData['image'])
+        ->not()->toEqual($base64Image)
+        ->and($maskedData['image'])->toEqual('base64 encoded images are too big to process'); // Assuming 'DEFAULT_VALUE' is what you use for masking
 });
 
 it('does not mask non-base64 encoded strings', function (): void {

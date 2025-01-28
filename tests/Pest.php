@@ -58,7 +58,7 @@ function createData(string $string): Data
             ],
             code: 123,
             size: 123,
-            loadTime: 12.3,
+            load_time: 12.3,
             body: [
                 $string => $string,
             ],

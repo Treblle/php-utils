@@ -18,12 +18,13 @@ it('can cast an object to an array', function (string $string): void {
             architecture: $string,
         ),
         encoding: $string,
+        hostname: $string,
     );
 
     expect(
         (array) $server,
     )->toBeArray()->toHaveKeys(
-        keys: ['ip', 'timezone', 'software', 'signature', 'protocol', 'os', 'encoding'],
+        keys: ['ip', 'timezone', 'software', 'signature', 'protocol', 'os', 'encoding', 'hostname'],
     );
 })->with('strings');
 
@@ -40,6 +41,7 @@ it('can map the object to the correct array format', function (string $string): 
             architecture: $string,
         ),
         encoding: $string,
+        hostname: $string,
     );
 
     expect(
@@ -56,5 +58,6 @@ it('can map the object to the correct array format', function (string $string): 
             'architecture' => $string,
         ],
         'encoding' => $string,
+        'hostname' => $string,
     ]);
 })->with('strings');
