@@ -14,15 +14,13 @@ it('can get init values', function (): void {
         $php->get(
             string: 'display_errors',
         ),
-    )->toBeString()->toEqual('On');
-
-    expect(
-        $php->get('does not exist'),
-    )->toBeString()->toEqual('<unknown>');
-
-    expect(
-        $php->get(
-            string: 'memory_limit',
-        ),
-    )->toBeString()->toEqual('128M');
+    )->toBeString()->toEqual('On')
+        ->and(
+            $php->get('does not exist'),
+        )->toBeString()->toEqual('<unknown>')
+        ->and(
+            $php->get(
+                string: 'memory_limit',
+            ),
+        )->toBeString()->toEqual('128M');
 });
